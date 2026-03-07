@@ -77,9 +77,10 @@ nav {
 }
 
 .nav-contact {
+  display: flex;
+  align-items: center;
   justify-self: end;
   margin-right: 30px;
-  gap: 40px;
 }
 
 .nav-contact a {
@@ -87,6 +88,17 @@ nav {
   text-decoration: none;
   font-weight: 600;
   font-size: clamp(16px, 1vw, 32px);
+}
+
+.nav-contact a:first-child::after {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-left: 1ch;
+  margin-right: 1ch;
+  background: #ffffff;
+  vertical-align: middle;
 }
 
 /* ===== HERO ===== */
@@ -455,9 +467,10 @@ nav {
 }
 
 .nav-contact {
+  display: flex;
+  align-items: center;
   justify-self: end;
   margin-right: 30px;
-  gap: 40px;
 }
 
 .nav-contact a {
@@ -465,6 +478,17 @@ nav {
   text-decoration: none;
   font-weight: 600;
   font-size: clamp(16px, 1vw, 32px);
+}
+
+.nav-contact a:first-child::after {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-left: 1ch;
+  margin-right: 1ch;
+  background: #ffffff;
+  vertical-align: middle;
 }
 
 /* ===== HERO ===== */
