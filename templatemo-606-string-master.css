@@ -203,7 +203,7 @@ nav {
 .features-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 35px 30px;
+  gap: 20px 18px;
   margin-top: 60px;
   align-items: center;
   grid-auto-rows: 1fr;
@@ -220,7 +220,7 @@ color:inherit;
 display:block;
   position: relative;
 overflow: hidden;
-  height:170px;
+  height:200px;
 }
 
 .feature-card:hover {
@@ -593,7 +593,7 @@ nav {
 .features-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 35px 30px;
+  gap: 20px 18px;
   margin-top: 60px;
   align-items: center;
   grid-auto-rows: 1fr;
@@ -610,7 +610,7 @@ color:inherit;
 display:block;
   position: relative;
 overflow: hidden;
-  height:170px;
+  height:200px;
 }
 
 .feature-card:hover {
