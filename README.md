@@ -1,0 +1,2 @@
+# zboradweb
+tvorba stránek zborad
