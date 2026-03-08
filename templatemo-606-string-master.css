@@ -949,6 +949,11 @@ color:#DFAE4F;
     display: none;
   }
 
+  .features-grid {
+    gap: 12px;
+    margin-top: 24px;
+  }
+
   .hero {
     padding-top: 8.6rem;
     padding-inline: 1rem;
@@ -964,12 +969,66 @@ color:#DFAE4F;
   }
 
   .feature-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     height: auto;
-    min-height: 180px;
+    min-height: 0;
+    padding: 1rem;
+    overflow: visible;
+  }
+
+  .feature-card h3,
+  .feature-card p {
+    overflow-wrap: anywhere;
+  }
+
+  .card-image {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    margin-top: 0.75rem;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .two-images {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    height: auto;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .gallery img,
+  .reference-gallery img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .reference-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 }
 
-@media (hover: none) and (pointer: coarse) {
+@media (max-width: 992px) and (hover: none) and (pointer: coarse) {
   .feature-card:hover {
     transform: none;
   }
@@ -979,7 +1038,12 @@ color:#DFAE4F;
   }
 
   .card-image {
-    opacity: 0.18;
+    opacity: 1;
     pointer-events: none;
+  }
+
+  .gallery img:hover,
+  .reference-gallery img:hover {
+    transform: none;
   }
 }
