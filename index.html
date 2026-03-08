@@ -10,6 +10,160 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="templatemo-606-string-master.css">
+  <style>
+    .poptavka-modal-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 4000;
+    }
+
+    .poptavka-modal-overlay.is-open {
+      display: flex;
+    }
+
+    .poptavka-modal {
+      width: min(760px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: #111;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .poptavka-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .poptavka-modal h2 {
+      font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+      margin: 0;
+      color: var(--accent);
+    }
+
+    .poptavka-close {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .poptavka-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .poptavka-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .poptavka-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .poptavka-field label {
+      font-size: 14px;
+      color: #e7e7e7;
+      font-weight: 600;
+    }
+
+    .poptavka-field input,
+    .poptavka-field select,
+    .poptavka-field textarea {
+      background: #0a0a0a;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+    }
+
+    .poptavka-field textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .poptavka-note {
+      margin-top: 14px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+    }
+
+    .poptavka-actions {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .poptavka-submit {
+      border: 0;
+      cursor: pointer;
+      background: var(--accent);
+      color: #000;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      font-family: inherit;
+    }
+
+    .poptavka-preview {
+      font-size: 1rem;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .poptavka-status {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .poptavka-status.error {
+      color: #ff8f8f;
+    }
+
+    .poptavka-status.success {
+      color: #9de09d;
+    }
+
+    .poptavka-hp {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+    }
+
+    @media (max-width: 700px) {
+      .poptavka-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -56,7 +210,7 @@
       </p>
 
       <div class="hero-buttons">
-        <a href="#" class="btn-primary">Nezávazná poptávka →</a>
+        <a href="#poptavka-modal" class="btn-primary" id="open-poptavka">Nezávazná poptávka →</a>
       </div>
 
       <div class="hero-stats">
@@ -81,6 +235,77 @@
   </div>
 </section>
 
+<div class="poptavka-modal-overlay" id="poptavka-modal" aria-hidden="true">
+  <div class="poptavka-modal" role="dialog" aria-modal="true" aria-labelledby="poptavka-title">
+    <div class="poptavka-modal-header">
+      <h2 id="poptavka-title">Nezavazna poptavka</h2>
+      <button type="button" class="poptavka-close" id="close-poptavka" aria-label="Zavrit formular">&times;</button>
+    </div>
+
+    <form class="poptavka-grid" id="poptavka-form" novalidate>
+      <div class="poptavka-field">
+        <label for="poptavka-jmeno">Jmeno a prijmeni *</label>
+        <input type="text" id="poptavka-jmeno" name="jmeno" required>
+      </div>
+
+      <div class="poptavka-field">
+        <label for="poptavka-email">E-mail *</label>
+        <input type="email" id="poptavka-email" name="email" required>
+      </div>
+
+      <div class="poptavka-field">
+        <label for="poptavka-telefon">Telefon *</label>
+        <input type="tel" id="poptavka-telefon" name="telefon" required>
+      </div>
+
+      <div class="poptavka-field">
+        <label for="poptavka-lokalita">Lokalita / objekt</label>
+        <input type="text" id="poptavka-lokalita" name="lokalita">
+      </div>
+
+      <div class="poptavka-field full">
+        <label for="poptavka-typ">Typ prace</label>
+        <select id="poptavka-typ" name="typ_prace">
+          <option value="">Vyberte typ prace</option>
+          <option value="cisteni-fasad">Cisteni fasad a strech</option>
+          <option value="site-proti-ptakum">Site proti ptakum</option>
+          <option value="hydroizolace">Hydroizolace</option>
+          <option value="montazni-prace">Montazni prace</option>
+          <option value="klempirske-prace">Klempirske prace</option>
+          <option value="natery">Natery</option>
+          <option value="zednicke-prace">Zednicke prace</option>
+          <option value="havarijni-zasahy">Havarijni zasahy</option>
+          <option value="jine">Jine</option>
+        </select>
+      </div>
+
+      <div class="poptavka-field full">
+        <label for="poptavka-popis">Popis poptavky *</label>
+        <textarea id="poptavka-popis" name="popis" required placeholder="Popiste pozadovanou praci, termin a dalsi informace."></textarea>
+      </div>
+
+      <div class="poptavka-field full">
+        <label for="poptavka-prilohy">Prilohy (obrazky a soubory)</label>
+        <input type="file" id="poptavka-prilohy" name="prilohy" multiple accept=".jpg,.jpeg,.png,.webp,.heic,.pdf,.doc,.docx,.xls,.xlsx,.txt">
+      </div>
+
+      <div class="poptavka-hp" aria-hidden="true">
+        <label for="poptavka-website">Website</label>
+        <input type="text" id="poptavka-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <p class="poptavka-note full">
+        Po odeslani prijde potvrzeni na e-mail zadavatele a poptavka bude dorucena na info@zborad.cz.
+      </p>
+
+      <div class="poptavka-actions full">
+        <button type="submit" class="poptavka-submit" id="poptavka-submit">Odeslat poptavku</button>
+        <span class="poptavka-preview">odpovime asap</span>
+      </div>
+      <div class="poptavka-status full" id="poptavka-status" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
 <!-- SLUŽBY -->
 <section class="features" id="sluzby">
   <div class="section-container">
@@ -225,7 +450,97 @@
 
   </div>
 </footer>
+<script>
+  (function () {
+    const overlay = document.getElementById('poptavka-modal');
+    const openBtn = document.getElementById('open-poptavka');
+    const closeBtn = document.getElementById('close-poptavka');
+    const form = document.getElementById('poptavka-form');
+    const submitBtn = document.getElementById('poptavka-submit');
+    const statusEl = document.getElementById('poptavka-status');
 
+    if (!overlay || !openBtn || !closeBtn || !form) {
+      return;
+    }
+
+    const openModal = function () {
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = function () {
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (statusEl) {
+        statusEl.textContent = '';
+        statusEl.classList.remove('error', 'success');
+      }
+    };
+
+    openBtn.addEventListener('click', function (event) {
+      event.preventDefault();
+      openModal();
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', function (event) {
+      if (event.target === overlay) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && overlay.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (!submitBtn || !statusEl) {
+        return;
+      }
+
+      statusEl.textContent = '';
+      statusEl.classList.remove('error', 'success');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Odesilam...';
+
+      const formData = new FormData(form);
+
+      fetch('/api/poptavka', {
+        method: 'POST',
+        body: formData
+      })
+        .then(function (response) {
+          return response.json().then(function (data) {
+            return { status: response.status, data: data };
+          });
+        })
+        .then(function (result) {
+          if (result.status >= 200 && result.status < 300 && result.data && result.data.ok) {
+            statusEl.textContent = result.data.message || 'Poptavka byla odeslana.';
+            statusEl.classList.add('success');
+            form.reset();
+            return;
+          }
+          statusEl.textContent = (result.data && result.data.message) || 'Odeslani se nepodarilo.';
+          statusEl.classList.add('error');
+        })
+        .catch(function () {
+          statusEl.textContent = 'Odeslani se nepodarilo. Zkuste to prosim znovu.';
+          statusEl.classList.add('error');
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Odeslat poptavku';
+        });
+    });
+  })();
+</script>
 </body>
 </html>
 
