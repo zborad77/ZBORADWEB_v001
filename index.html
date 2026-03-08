@@ -423,8 +423,8 @@
 
 </a>
 
-<a href="remeslne-prace-bez-lana.html" class="feature-card" style="display:flex; align-items:center; justify-content:center; text-align:center;">
-  <h3 style="margin:0;">Řemeslné práce bez lana</h3>
+<a href="remeslne-prace-bez-lana.html" class="feature-card remeslne-card">
+  <h3>&#344;emesln&#233; pr&#225;ce bez lana</h3>
 </a>
 
 
@@ -538,6 +538,24 @@
           submitBtn.disabled = false;
           submitBtn.textContent = 'Odeslat poptavku';
         });
+    });
+  })();
+</script>
+<script>
+  (function () {
+    if (!window.matchMedia('(max-width: 992px)').matches) {
+      return;
+    }
+
+    var cards = document.querySelectorAll('a.feature-card[href]');
+    cards.forEach(function (card) {
+      card.addEventListener('click', function (event) {
+        event.preventDefault();
+        var target = card.getAttribute('href');
+        if (target) {
+          window.location.href = target;
+        }
+      }, { passive: false });
     });
   })();
 </script>

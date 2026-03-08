@@ -232,6 +232,7 @@ overflow: hidden;
   margin-bottom: 0.75rem;
   color: var(--accent);
 }
+
 .card-text{
 position:relative;
 z-index:2;
@@ -942,6 +943,20 @@ color:#DFAE4F;
     flex-wrap: wrap;
     gap: 1.25rem;
   }
+
+  a.feature-card {
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+
+  a.feature-card * {
+    pointer-events: none;
+  }
+
+  .gallery img:hover,
+  .reference-gallery img:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1016,15 +1031,64 @@ color:#DFAE4F;
 
   .gallery img,
   .reference-gallery img {
+    display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    height: auto !important;
+    align-self: start;
   }
 
   .reference-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+    align-items: start;
+  }
+
+  .reference-gallery img {
+    width: 100%;
+    height: auto !important;
+    max-height: none !important;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .reference-list {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0 10px;
+  }
+
+  .reference-link {
+    width: 100%;
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .reference-link > span:first-child {
+    width: 100% !important;
+  }
+
+  .reference-link > span:last-child {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(84px, 1fr));
+    gap: 8px !important;
+    max-width: 100% !important;
+    width: 100%;
+  }
+
+  .reference-link > span:last-child img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 92 / 58;
+    object-fit: cover !important;
+    display: block;
+  }
+
+  .remeslne-card {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    text-align: left !important;
   }
 }
 
@@ -1045,5 +1109,48 @@ color:#DFAE4F;
   .gallery img:hover,
   .reference-gallery img:hover {
     transform: none;
+  }
+}
+
+.remeslne-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.remeslne-card h3 {
+  margin: 0;
+}
+
+/* Desktop alignment and spacing */
+@media (min-width: 993px) {
+  .nav-container,
+  .hero-container,
+  .section-container,
+  .footer-container {
+    width: calc(100% - 56px);
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .features {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px 20px;
+  }
+
+  .feature-card {
+    height: 210px;
   }
 }
