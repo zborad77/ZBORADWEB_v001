@@ -30,7 +30,7 @@ body {
 nav {
   position: fixed;
   width: 100%;
-  height: clamp(80px, 8vw, 150px);
+  height: clamp(68px, 7vw, 110px);
   background: rgba(13,13,13,0.95);
   border-bottom: 1px solid var(--border);
   z-index: 1000;
@@ -54,7 +54,7 @@ nav {
 }
 
 .logo img {
-  height: 140px;
+  height: 110px;
   width: auto;
   display: block;
 }
@@ -73,7 +73,7 @@ nav {
   color: #ffffff;
   text-decoration: none;
   font-weight: 600;
-  font-size: clamp(16px, 1vw, 32px);
+  font-size: clamp(14px, 0.95vw, 20px);
 }
 
 .nav-contact {
@@ -87,7 +87,7 @@ nav {
   color: var(--accent);
   text-decoration: none;
   font-weight: 600;
-  font-size: clamp(16px, 1vw, 32px);
+  font-size: clamp(14px, 0.95vw, 20px);
 }
 
 .nav-contact a:first-child::after {
@@ -387,7 +387,6 @@ color:#DFAE4F;
     grid-template-columns: 1fr;
   }
 }
-
 .reference-gallery img.is-lightbox-item {
   cursor: zoom-in;
 }
@@ -520,7 +519,7 @@ body {
 nav {
   position: fixed;
   width: 100%;
-  height: clamp(80px, 8vw, 150px);
+  height: clamp(68px, 7vw, 110px);
   background: rgba(13,13,13,0.95);
   border-bottom: 1px solid var(--border);
   z-index: 1000;
@@ -544,7 +543,7 @@ nav {
 }
 
 .logo img {
-  height: 140px;
+  height: 110px;
   width: auto;
   display: block;
 }
@@ -563,7 +562,7 @@ nav {
   color: #ffffff;
   text-decoration: none;
   font-weight: 600;
-  font-size: clamp(16px, 1vw, 32px);
+  font-size: clamp(14px, 0.95vw, 20px);
 }
 
 .nav-contact {
@@ -577,7 +576,7 @@ nav {
   color: var(--accent);
   text-decoration: none;
   font-weight: 600;
-  font-size: clamp(16px, 1vw, 32px);
+  font-size: clamp(14px, 0.95vw, 20px);
 }
 
 .nav-contact a:first-child::after {
@@ -878,3 +877,109 @@ color:#DFAE4F;
   }
 }
 
+
+/* Mobile fixes for ZBORAD layout */
+@media (max-width: 992px) {
+  nav {
+    height: auto;
+    min-height: 74px;
+    padding: 6px 0;
+  }
+
+  .nav-container {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 6px;
+    padding: 0 12px;
+  }
+
+  .logo {
+    margin-left: 0;
+  }
+
+  .logo img {
+    height: clamp(52px, 10vw, 74px);
+  }
+
+  .nav-links {
+    margin-left: 0;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 1.2;
+  }
+
+  .nav-links a {
+    font-size: 0.95rem;
+  }
+
+  .nav-contact {
+    margin-right: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .nav-contact a {
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding-top: 11rem;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-contact {
+    display: none;
+  }
+
+  .hero {
+    padding-top: 8.6rem;
+    padding-inline: 1rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 10vw, 2.5rem);
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .feature-card {
+    height: auto;
+    min-height: 180px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .feature-card:hover {
+    transform: none;
+  }
+
+  .feature-card:hover .card-text {
+    opacity: 1;
+  }
+
+  .card-image {
+    opacity: 0.18;
+    pointer-events: none;
+  }
+}
