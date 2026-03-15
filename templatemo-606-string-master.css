@@ -1153,4 +1153,14 @@ color:#DFAE4F;
   .feature-card {
     height: 210px;
   }
+
+  .logo img {
+    transform: scale(1.2);
+    transform-origin: left center;
+  }
+
+  .logo {
+    margin-left: 0;
+    transform: translateX(-6px);
+  }
 }
