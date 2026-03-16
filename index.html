@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="templatemo-606-string-master.css">
+  <link rel="stylesheet" href="templatemo-606-string-master.css?v=20260315-2">
   <style>
     .poptavka-modal-overlay {
       position: fixed;
@@ -238,13 +238,13 @@
 <div class="poptavka-modal-overlay" id="poptavka-modal" aria-hidden="true">
   <div class="poptavka-modal" role="dialog" aria-modal="true" aria-labelledby="poptavka-title">
     <div class="poptavka-modal-header">
-      <h2 id="poptavka-title">Nezavazna poptavka</h2>
-      <button type="button" class="poptavka-close" id="close-poptavka" aria-label="Zavrit formular">&times;</button>
+      <h2 id="poptavka-title">Nezávazná poptávka</h2>
+      <button type="button" class="poptavka-close" id="close-poptavka" aria-label="Zavřít formulář">&times;</button>
     </div>
 
     <form class="poptavka-grid" id="poptavka-form" novalidate>
       <div class="poptavka-field">
-        <label for="poptavka-jmeno">Jmeno a prijmeni *</label>
+        <label for="poptavka-jmeno">Jméno a příjmení *</label>
         <input type="text" id="poptavka-jmeno" name="jmeno" required>
       </div>
 
@@ -281,11 +281,11 @@
 
       <div class="poptavka-field full">
         <label for="poptavka-popis">Popis poptavky *</label>
-        <textarea id="poptavka-popis" name="popis" required placeholder="Popiste pozadovanou praci, termin a dalsi informace."></textarea>
+        <textarea id="poptavka-popis" name="popis" required placeholder="Popište požadovanou práci, termín a další informace."></textarea>
       </div>
 
       <div class="poptavka-field full">
-        <label for="poptavka-prilohy">Prilohy (obrazky a soubory)</label>
+        <label for="poptavka-prilohy">Přílohy (obrázky a soubory)</label>
         <input type="file" id="poptavka-prilohy" name="prilohy" multiple accept=".jpg,.jpeg,.png,.webp,.heic,.pdf,.doc,.docx,.xls,.xlsx,.txt">
       </div>
 
@@ -299,7 +299,7 @@
       </p>
 
       <div class="poptavka-actions full">
-        <button type="submit" class="poptavka-submit" id="poptavka-submit">Odeslat poptavku</button>
+        <button type="submit" class="poptavka-submit" id="poptavka-submit">Odeslat poptávku</button>
         <span class="poptavka-preview">odpovime asap</span>
       </div>
       <div class="poptavka-status full" id="poptavka-status" aria-live="polite"></div>
@@ -423,11 +423,6 @@
 
 </a>
 
-<a href="remeslne-prace-bez-lana.html" class="feature-card remeslne-card">
-  <h3>&#344;emesln&#233; pr&#225;ce bez lana</h3>
-</a>
-
-
 </div>
     </div>
   </div>
@@ -536,7 +531,7 @@
         })
         .finally(function () {
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Odeslat poptavku';
+          submitBtn.textContent = 'Odeslat poptávku';
         });
     });
   })();
@@ -561,5 +556,6 @@
 </script>
 </body>
 </html>
+
 
 

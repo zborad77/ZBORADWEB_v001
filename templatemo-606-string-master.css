@@ -888,14 +888,18 @@ color:#DFAE4F;
   }
 
   .nav-container {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 6px;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    justify-items: stretch;
+    gap: 8px 12px;
     padding: 0 12px;
   }
 
   .logo {
+    grid-column: 1;
+    grid-row: 1;
     margin-left: 0;
+    justify-self: start;
   }
 
   .logo img {
@@ -903,11 +907,14 @@ color:#DFAE4F;
   }
 
   .nav-links {
+    grid-column: 1 / -1;
+    grid-row: 2;
     margin-left: 0;
     gap: 0.75rem;
     flex-wrap: wrap;
     justify-content: center;
     line-height: 1.2;
+    width: 100%;
   }
 
   .nav-links a {
@@ -915,14 +922,25 @@ color:#DFAE4F;
   }
 
   .nav-contact {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
     margin-right: 0;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.2rem;
+    white-space: nowrap;
   }
 
   .nav-contact a {
     font-size: 0.9rem;
+    line-height: 1.15;
+  }
+
+  .nav-contact a:first-child::after {
+    display: none;
   }
 
   .hero {
@@ -1198,5 +1216,65 @@ color:#DFAE4F;
   .logo {
     margin-left: 0;
     transform: translateX(-6px);
+  }
+}
+
+/* Strong mobile header override */
+@media (max-width: 992px) {
+  nav .nav-container {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+    align-items: center !important;
+    justify-items: stretch !important;
+    gap: 8px 12px !important;
+    padding: 0 12px !important;
+  }
+
+  nav .logo {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    justify-self: start !important;
+    margin-left: 0 !important;
+    transform: none !important;
+  }
+
+  nav .logo img {
+    height: clamp(52px, 10vw, 74px) !important;
+    width: auto !important;
+    transform: none !important;
+  }
+
+  nav .nav-contact {
+    display: flex !important;
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 0.2rem !important;
+    margin-right: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  nav .nav-contact a {
+    display: block !important;
+    font-size: 0.9rem !important;
+    line-height: 1.15 !important;
+  }
+
+  nav .nav-contact a:first-child::after {
+    display: none !important;
+  }
+
+  nav .nav-links {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
+    margin-left: 0 !important;
+    flex-wrap: wrap !important;
   }
 }
